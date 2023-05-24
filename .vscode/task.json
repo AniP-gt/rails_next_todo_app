@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "rspec: run line",
+      "type": "shell",
+      "command": "docker-compose run --rm -e RAILS_ENV=test app bundle exec rspec ${relativeFile}:${lineNumber}",
+      "group": "test",
+      "presentation": {
+        "showReuseMessage": false,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "rspec: run file",
+      "type": "shell",
+      "command": "docker-compose run --rm -e RAILS_ENV=test app bundle exec rspec ${relativeFile}",
+      "group": "test",
+      "presentation": {
+        "showReuseMessage": false,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "binding.pry: attach every_app",
+      "type": "shell",
+      "command": "docker attach every_app",
+      "group": "test",
+      "presentation": {
+        "showReuseMessage": false,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "rubocop: run -a ",
+      "type": "shell",
+      "command": "docker-compose run --rm app bundle exec rubocop -a ${relativeFile}",
+      "presentation": {
+        "showReuseMessage": false,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "eslint: run --fix ",
+      "type": "shell",
+      "command": "docker-compose run --rm app yarn eslint --fix ${relativeFile}",
+      "presentation": {
+        "showReuseMessage": false,
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "sqlfluff: run --lint ",
+      "type": "shell",
+      "command": "sqlfluff lint --dialect mysql ${relativeFile}",
+      "presentation": {
+        "showReuseMessage": false,
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

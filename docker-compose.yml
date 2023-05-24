@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0.32
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    security_opt:
+      - seccomp:unconfined
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./backend:/backend
+      - bundle:/usr/local/bundle
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
+      - db
+    ports:
+      - "3001:3000"
+    environment:
+      TZ: Asia/Tokyo
+      FRONTEND_ORIGIN: http://localhost:3000
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/frontend
+    command: sh -c "yarn install && yarn dev"
+    ports:
+      - "3000:3000"
+volumes:
+  db:
+    driver: local
+  bundle:
+    driver: local

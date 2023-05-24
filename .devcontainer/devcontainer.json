@@ -1,0 +1,89 @@
+{
+  "name": "local-docker-compose",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  // コンテナを指定
+  "service": "backend",
+  // 作業するスペースを指定
+  "workspaceFolder": "/backend",
+  // 拡張機能
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag",
+        "alefragnani.Bookmarks",
+        "SirTobi.code-clip-ring",
+        "formulahendry.code-runner",
+        "kaiwood.endwise",
+        "oderwat.indent-rainbow",
+        "ms-vscode.test-adapter-converter",
+        "shardulm94.trailing-spaces",
+        "mosapride.zenkaku",
+        "streetsidesoftware.code-spell-checker",
+        // Linter
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        // Test Explorer
+        "hbenl.vscode-test-explorer",
+        //sqlfluff
+        "dorzey.vscode-sqlfluff",
+        // HTML&CSS
+        "smelukov.vscode-csstree",
+        "ecmel.vscode-html-css",
+        // Javascript
+        "xabikos.JavaScriptSnippets",
+        //React.js
+        "burkeholland.simple-react-snippets",
+        "dsznajder.es7-react-js-snippets",
+        // Vuejs
+        "octref.vetur",
+        "Vue.volar",
+        "dariofuzinato.vue-peek",
+        // Ruby & Rails
+        // vscode-rdbg-ruby-debugger
+        "KoichiSasada.vscode-rdbg",
+        "sporto.rails-go-to-spec",
+        "bung87.vscode-gemfile",
+        "noku.rails-run-spec-vscode",
+        "bung87.rails",
+        "aki77.rails-db-schema",
+        "aki77.rails-routes",
+        "wingrunr21.vscode-ruby",
+        "rebornix.ruby",
+        "castwide.solargraph",
+        "connorshea.vscode-ruby-test-adapter",
+        "misogi.ruby-rubocop",
+      ]
+    }
+  },
+  "settings": {
+    // Ruby Test Explorer
+    "rubyTestExplorer.testFramework": "rspec",
+    "rubyTestExplorer.rspecCommand": "bundle exec rspec",
+
+    "ruby.useLanguageServer": true,
+    "ruby.useBundler": true,
+
+    // rubocop
+    "ruby.format": "rubocop",
+    "ruby.lint": {
+      "rubocop": {
+        "useBundler": true,
+        "except": ["Metrics"] // because it is annoying that it puts wavy lines to all lines in those methods
+      }
+    },
+    "ruby.rubocop.executePath": "/usr/local/bundle/bin/", // rubocop-daemon-wrapper (rubocopに名前変更) のパス
+    "editor.defaultFormatter": "misogi.ruby-rubocop",
+    "[ruby]": {
+      "editor.formatOnSave": true
+    },
+    "editor.formatOnSaveTimeout": 5000,
+
+    // solargraph
+    "solargraph.useBundler": true,
+    "solargraph.bundlerPath": "/usr/local/bundle/bin/",
+    "solargraph.diagnostics": true
+  },
+
+  "postCreateCommand": "apt-get update && apt-get install -y curl git"
+}
