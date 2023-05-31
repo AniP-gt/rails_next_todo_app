@@ -20,7 +20,7 @@ export const TodoList = () => {
     };
 
     getList();
-  }, []);
+  }, [todos]);
 
   return (
     <>

@@ -1,14 +1,14 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import st from '../../../styles/sass/style.module.scss';
 import { postTodo } from '../api/index';
-import { Todo } from '../type';
+import { TodoParams } from '../type';
 
 export const TodoForm = () => {
   const [content, setContent] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const params: Todo = {
+    const params: TodoParams = {
       content: content,
     };
     postTodo({ params });

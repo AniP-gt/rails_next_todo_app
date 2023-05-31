@@ -6,3 +6,11 @@ export type Todo = {
   priority: string;
   due_date: string;
 };
+
+export type TodoParams = {
+  title: string;
+  content: string;
+  status: boolean;
+  priority: string;
+  due_date: string;
+}
