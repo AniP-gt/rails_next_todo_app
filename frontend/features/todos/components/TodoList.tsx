@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import st from '../../../styles/sass/style.module.scss';
 import { getTodos } from '../api';
 
 interface Todo {
@@ -24,11 +25,11 @@ export const TodoList = () => {
   return (
     <>
       {todos.map((todo) => (
-        <ul key={todo.id}>
-          <li>{todo.title}</li>
+        <ul
+          key={todo.id}
+          className={st.list_ul}
+        >
           <li>{todo.content}</li>
-          <li>{todo.priority}</li>
-          <li>{todo.due_date}</li>
         </ul>
       ))}
     </>

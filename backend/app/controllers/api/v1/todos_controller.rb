@@ -46,11 +46,6 @@ class Api::V1::TodosController < ApplicationController
   private
 
   def todo_params
-    params.require(:todo)
-          .permit(:title,
-                  :content,
-                  :status,
-                  :priority,
-                  :due_date)
+    params.require(:params).permit(:content)
   end
 end

@@ -1,16 +1,22 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import st from '../../../styles/sass/style.module.scss';
+import { postTodo } from '../api/index';
+import { Todo } from '../type';
 
 export const TodoForm = () => {
-  const [todo, setTodo] = useState('');
+  const [content, setContent] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setTodo('');
+    const params: Todo = {
+      content: content,
+    };
+    postTodo({ params });
+    setContent('');
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodo(e.target.value);
+    setContent(e.target.value);
   };
 
   return (
@@ -20,15 +26,16 @@ export const TodoForm = () => {
     >
       <input
         type='text'
-        value={todo}
+        value={content}
         onChange={handleChange}
         className={st.inputText}
       />
       <button
         type='submit'
         className={st.todoButton}
+        onClick={() => handleSubmit}
       >
-          Add Todo
+        Add Todo
       </button>
     </form>
   );

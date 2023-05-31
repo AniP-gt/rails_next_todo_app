@@ -1,13 +1,5 @@
 import { baseApi } from '../../../config/baseApi';
-
-type Todo = {
-  id: number;
-  title: string;
-  content: string;
-  status: boolean;
-  priority: string;
-  due_date: string;
-};
+import { Todo } from '../type';
 
 export const getTodos = async (): Promise<Todo[]> => {
   try {
@@ -18,3 +10,11 @@ export const getTodos = async (): Promise<Todo[]> => {
     return Promise.reject(error);
   }
 };
+
+export const postTodo = (params: Todo) => {
+  baseApi.post('todos', params).then(res => {
+    console.log(res)
+  }).catch(err => {
+    console.error(err);
+  })
+}
