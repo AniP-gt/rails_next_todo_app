@@ -6,14 +6,15 @@ interface TodoShowProps {
   id: number;
 }
 
-const TodoShow: NextPage<TodoShowProps> = ({ id }) => {
+const TodoShow: NextPage<TodoShowProps> = () => {
   const router = useRouter();
-  // const { id } = router.query;
+  const { id } = router.query;
+  const numericId = parseInt(id as string, 10);
 
   return (
     <>
       <div>Show Page</div>
-      <TodoDetail id={id} />
+      <TodoDetail id={numericId} />
     </>
   );
 };

@@ -5,21 +5,17 @@ import { getDetailTodo } from '../api';
 
 interface TodoDetailProps {
   id: number;
-  title: string;
   content: string;
-  priority: string;
-  due_date: string;
 }
 
 export const TodoDetail = ({ id }: TodoDetailProps) => {
   const [todo, setTodo] = useState<TodoDetailProps[]>([]);
+  const getDetail = async () => {
+    const data = await getDetailTodo(id);
+    setTodo(data);
+  };
 
   useEffect(() => {
-    const getDetail = async () => {
-      const data = await getDetailTodo(id);
-      setTodo(data);
-    };
-
     getDetail();
   }, [id]);
 

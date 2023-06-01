@@ -21,8 +21,7 @@ export const TodoList = () => {
     };
 
     getList();
-  }, [todos]);
-
+  }, []);
   return (
     <>
       {todos.map((todo) => (
