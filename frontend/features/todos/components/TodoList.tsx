@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import st from '../../../styles/sass/style.module.scss';
-import { getTodos } from '../api';
+import { getListTodos } from '../api';
 
 interface Todo {
   id: number;
@@ -15,7 +16,7 @@ export const TodoList = () => {
 
   useEffect(() => {
     const getList = async () => {
-      const data = await getTodos();
+      const data = await getListTodos();
       setTodos(data);
     };
 
@@ -29,7 +30,7 @@ export const TodoList = () => {
           key={todo.id}
           className={st.list_ul}
         >
-          <li>{todo.content}</li>
+          <Link href={`/todos/${todo.id}`} passHref>{todo.content}</Link>
         </ul>
       ))}
     </>
