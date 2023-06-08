@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import st from '../../../styles/sass/style.module.scss';
-import { getListTodos } from '../api';
+import { getListTodos } from '../../api/index';
 
-interface Todo {
+type Todo = {
   id: number;
   title: string;
   content: string;
@@ -29,7 +29,7 @@ export const TodoList = () => {
           key={todo.id}
           className={st.list_ul}
         >
-          <Link href={`/todos/${todo.id}`} passHref>{todo.content}</Link>
+          <Link href={`/todos/${todo.id}`} passHref>{todo.title}</Link>
         </ul>
       ))}
     </>

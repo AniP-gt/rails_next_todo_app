@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { TodoForm, TodoList } from '../features/todos/index';
 import styles from '../styles/sass/index.module.scss';
 
@@ -21,7 +22,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1>ToDo App</h1>
-        <TodoForm />
+        <h2>Search ToDo</h2>
+        <Link href={'/todos/form'}>Create ToDo</Link>
         <TodoList />
       </main>
     </>

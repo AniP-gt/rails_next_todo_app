@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import st from '../../../styles/sass/style.module.scss';
-import { getDetailTodo } from '../api';
+import { getDetailTodo } from '../../api';
 
 interface TodoDetailProps {
   id: number;

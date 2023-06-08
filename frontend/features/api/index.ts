@@ -1,7 +1,7 @@
-import { baseApi } from '../../../config/baseApi';
-import { Todo } from '../type';
+import { baseApi } from './baseApi';
+import { GetTodo, PostTodo } from './types';
 
-export const getListTodos = async (): Promise<Todo[]> => {
+export const getListTodos = async (): Promise<GetTodo[]> => {
   try {
     const response = await baseApi.get('todos');
     return response.data;
@@ -11,7 +11,7 @@ export const getListTodos = async (): Promise<Todo[]> => {
   }
 };
 
-export const getDetailTodo = async (id: number): Promise<Todo[]> => {
+export const getDetailTodo = async (id: number): Promise<GetTodo[]> => {
   try {
     const response = await baseApi.get(`todos/${id}`);
     return response.data;
@@ -21,7 +21,7 @@ export const getDetailTodo = async (id: number): Promise<Todo[]> => {
   }
 };
 
-export const postTodo = (params: Todo) => {
+export const postTodo = (params: PostTodo) => {
   baseApi
     .post('todos', params)
     .then((res) => {

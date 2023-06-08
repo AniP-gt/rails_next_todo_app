@@ -1,4 +1,4 @@
-export type Todo = {
+export type GetTodo = {
   id: number;
   title: string;
   content: string;
@@ -7,10 +7,18 @@ export type Todo = {
   due_date: string;
 };
 
-export type TodoParams = {
+export type PostTodo = {
+  title: string;
+  content: string;
+  priority: string;
+  due_date: string;
+};
+
+export type PutTodo = {
+  id: number;
   title: string;
   content: string;
   status: boolean;
   priority: string;
   due_date: string;
-}
+};

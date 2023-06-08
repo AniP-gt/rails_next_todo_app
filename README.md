@@ -9,7 +9,7 @@ docker-compose run --rm backend bundle exec rails new . --force -d mysql --api
 
 ## reactプロジェクトを作成する時
 ```
-docker-compose run --rm frontend sh -c "npx create-next-app --typescript"
+docker-compose run --rm frontend sh -c "npx create-next-app@12.0.0 --typescript"
 ```
 - srcディレクトリをfrontendに移す
 
