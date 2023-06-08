@@ -9,7 +9,7 @@ docker-compose run --rm backend bundle exec rails new . --force -d mysql --api
 
 ## reactプロジェクトを作成する時
 ```
-docker-compose run --rm frontend sh -c "npx create-next-app --typescript"
+docker-compose run --rm frontend sh -c "npx create-next-app@12.0.0 --typescript"
 ```
 - srcディレクトリをfrontendに移す
 
@@ -27,7 +27,3 @@ git init #ルートディレクトリ
 
 - docker-compose build
 - docker-compose up
-
-## ライブラリの注意
-- 以下必須コマンド（routerは6系からガラっと変わるため。現行のプロジェクトでは5系でいいかも）
-- docker-compose run --rm frontend sh -c "cd app && yarn add react-router-dom@5"

@@ -1,0 +1,18 @@
+.inputText {
+  border: black 1px solid;
+  margin: 0 20px;
+}
+
+.todoForm{
+  margin: 30px;
+}
+
+.todoButton {
+  background-color: rgb(157, 157, 246);
+  &:hover {
+    background-color: rgb(179, 179, 183);
+  }
+  &:active {
+    background-color: aliceblue;
+  }
+}

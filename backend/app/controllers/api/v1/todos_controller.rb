@@ -10,7 +10,7 @@ class Api::V1::TodosController < ApplicationController
   end
 
   def create
-    todo = Todo.new(todo_params)
+    todo = Todo.new(create_params)
     if todo.save
       render json: todo
     else
@@ -45,12 +45,22 @@ class Api::V1::TodosController < ApplicationController
 
   private
 
-  def todo_params
-    params.require(:todo)
-          .permit(:title,
+  def create_params
+    params.permit(:title,
                   :content,
-                  :status,
                   :priority,
-                  :due_date)
+                  :due_date
+                 )
+  end
+
+  def update_params
+    params.require(:params)
+          .permit(:id,
+                  :title,
+                  :content,
+                  :priority,
+                  :due_date,
+                  :status
+                 )
   end
 end
