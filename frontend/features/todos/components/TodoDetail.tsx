@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import React, { useEffect, useState, useCallback } from 'react';
+import { NextRouter } from 'next/router';
+import React, { useEffect, useState, useCallback, ChangeEvent } from 'react';
 import st from '../../../styles/sass/style.module.scss';
 import { getDetailTodo } from '../../api';
 
 type Props = {
-  id: string;
+  router: NextRouter;
 };
 
 type TodoDetailState = {
@@ -16,7 +16,7 @@ type TodoDetailState = {
   due_date: string;
 };
 
-export const TodoDetail = ({ id }: Props) => {
+export const TodoDetail = ({ router }: Props) => {
   const initialState = {
     id: 0,
     title: '',
@@ -24,30 +24,93 @@ export const TodoDetail = ({ id }: Props) => {
     priority: '',
     status: false,
     due_date: '',
-  }
+  };
 
   const [todo, setTodo] = useState<TodoDetailState>(initialState);
+  const [params, setParams] = useState<TodoDetailState>(initialState);
+  const id: any = router.query.id;
 
   const getDetail = useCallback(async () => {
     const data = await getDetailTodo(id);
     setTodo(data);
   }, [id]);
 
+  const handleStatusChange = (isChecked: boolean) => {
+    setParams((prevTodo) => ({
+      ...prevTodo,
+      status: isChecked,
+    }));
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setParams((prevTodo) => ({
+      ...prevTodo,
+      [name]: value,
+    }));
+  };
+
   useEffect(() => {
+    // @note
+    //  routerの準備ができないうち(つまり無条件にundefinedを出す時)は、returnを返して、
+    //  undefined状態で処理が進まないようにします
+    if (!router.isReady) return;
+
     getDetail();
-  }, [getDetail]);
+  }, [router.isReady, getDetail]);
 
   return (
     <>
       <ul
         key={todo.id}
-        className={st.list_ul}
+        className={st.show_ul}
       >
-        <li>{todo.title}</li>
-        <li>{todo.content}</li>
-        <li>{todo.priority}</li>
-        <li>{todo.status}</li>
-        <li>{todo.due_date}</li>
+        <p>Todo</p>
+        <input
+          type='text'
+          name='title'
+          value={todo.title}
+          onChange={handleChange}
+          className={st.inputText}
+        />
+        <p>詳細</p>
+        <input
+          type='text'
+          name='content'
+          value={todo.content}
+          onChange={handleChange}
+          className={st.inputText}
+        />
+        <p>優先度</p>
+        <select
+          name='priority'
+          value={todo.priority}
+          className={st.show_li}
+          onChange={handleChange}
+        >
+          <option value='high'>高</option>
+          <option value='medium'>中</option>
+          <option value='low'>低</option>
+        </select>
+        <li>
+          <p>ステータス</p>
+          <input
+            type='checkbox'
+            id='check'
+            name='checkbox'
+            className={st.show_li}
+            checked={todo.status}
+            onChange={(e) => handleStatusChange(e.target.checked)}
+          />
+        </li>
+        <p>期日</p>
+        <input
+          type='date'
+          name='due_date'
+          value={todo.due_date}
+          onChange={handleChange}
+          className={st.inputText}
+        />
       </ul>
     </>
   );

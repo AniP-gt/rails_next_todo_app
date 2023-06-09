@@ -4,24 +4,22 @@ import st from '../../../styles/sass/style.module.scss';
 import { getListTodos } from '../../api/index';
 
 type Todo = {
-  id: number;
   title: string;
-  content: string;
-  priority: string;
-  due_date: string;
-}
+  status: boolean;
+};
 
 export const TodoList = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  useEffect(() => {
-    const getList = async () => {
-      const data = await getListTodos();
-      setTodos(data);
-    };
+  const getList = async () => {
+    const data = await getListTodos();
+    setTodos(data);
+  };
 
+  useEffect(() => {
     getList();
   }, []);
+
   return (
     <>
       {todos.map((todo) => (
@@ -29,7 +27,12 @@ export const TodoList = () => {
           key={todo.id}
           className={st.list_ul}
         >
-          <Link href={`/todos/${todo.id}`} passHref>{todo.title}</Link>
+          <Link
+            href={`/todos/${todo.id}`}
+            passHref
+          >
+            {todo.title}
+          </Link>
         </ul>
       ))}
     </>
