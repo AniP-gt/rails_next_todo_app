@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
-import { TodoForm, TodoList } from '../features/todos/index';
-import styles from '../styles/sass/index.module.scss';
+import { TodoList } from '../features/todos/index';
+import st from '../styles/sass/index.module.scss';
 
 const Home: NextPage = () => {
   return (
@@ -20,10 +19,12 @@ const Home: NextPage = () => {
         />
       </Head>
 
-      <main className={styles.main}>
-        <h1>ToDo App</h1>
-        <h2>Search ToDo</h2>
-        <Link href={'/todos/form'}>Create ToDo</Link>
+      <main className={st.main}>
+        <h1 className={st.list_top}>ToDo App</h1>
+        <div className={st.main_top}>
+          <h2 className={st.search_top}>Search ToDo</h2>
+          <Link className={st.create_top} href={'/todos/form'}>Create ToDo</Link>
+        </div>
         <TodoList />
       </main>
     </>

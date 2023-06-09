@@ -2,3 +2,35 @@
   max-width: 500px;
   margin: 0 auto;
 }
+
+.list_top {
+  margin: 20px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.main_top {
+  margin-bottom: 30px;
+}
+
+.search_top {
+  margin: 30px 0;
+  font-size: 25px;
+  &:hover {
+    color: blue;
+    opacity: 0.8;
+    transition: all 0.6s;
+    cursor: pointer;
+  }
+}
+
+.create_top {
+  margin: 30px 0;
+  font-size: 25px;
+  &:hover {
+    color: rgb(0, 255, 200);
+    opacity: 0.8;
+    transition: all 0.6s;
+    cursor: pointer;
+  }
+}
