@@ -85,7 +85,7 @@ export const TodoDetail = ({ router }: Props) => {
         <select
           name='priority'
           value={todo.priority}
-          className={st.show_li}
+          className={st.inputText}
           onChange={handleChange}
         >
           <option value='high'>高</option>
@@ -94,14 +94,15 @@ export const TodoDetail = ({ router }: Props) => {
         </select>
         <li>
           <p>ステータス</p>
-          <input
-            type='checkbox'
-            id='check'
-            name='checkbox'
-            className={st.show_li}
-            checked={todo.status}
-            onChange={(e) => handleStatusChange(e.target.checked)}
-          />
+          <select
+            name='status'
+            value={todo.status.toString()} // todo.status を文字列に変換して value として設定
+            className={st.inputText}
+            onChange={(e) => handleStatusChange(e.target.value === 'true')} // 選択された値を真偽値に変換して処理
+          >
+            <option value='true'>完了</option>
+            <option value='false'>未完</option>
+          </select>
         </li>
         <p>期日</p>
         <input

@@ -3,7 +3,6 @@ export type GetTodos = {
   status: boolean;
 };
 
-
 export type GetTodo = {
   id: number;
   title: string;
