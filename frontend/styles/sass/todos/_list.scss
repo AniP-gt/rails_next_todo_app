@@ -2,3 +2,13 @@
   display: flex;
   margin-bottom: 30px;
 }
+
+.list_delete {
+  border: black 1px solid;
+  margin-left: 10px;
+  &:hover {
+    opacity: 0.6;
+    transition: all 0.6s;
+    background-color: gray;
+  }
+}

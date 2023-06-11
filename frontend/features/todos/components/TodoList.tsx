@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import st from '../../../styles/sass/style.module.scss';
-import { getListTodos } from '../../api/todoApi';
+import { getListTodos, deleteTodo } from '../../api/todoApi';
 
 type Todo = {
+  id: number;
   title: string;
   status: boolean;
 };
@@ -14,6 +15,15 @@ export const TodoList = () => {
   const getList = async () => {
     const data = await getListTodos();
     setTodos(data);
+  };
+
+  const destroyTodo = async (id: number) => {
+    try {
+      await deleteTodo(id);
+      await getList();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -33,6 +43,12 @@ export const TodoList = () => {
           >
             {todo.title}
           </Link>
+          <button
+            onClick={() => destroyTodo(todo.id)}
+            className={st.list_delete}
+          >
+              削除
+          </button>
         </ul>
       ))}
     </>

@@ -24,13 +24,13 @@ export const getDetailTodo = async (id: string): Promise<GetTodo> => {
 export const postTodo = (params: PostTodo) => {
   try {
     baseApi
-    .post('todos', params)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+      .post('todos', params)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   } catch (error) {
     console.log(error);
     return Promise.reject(error);
@@ -50,16 +50,27 @@ export const putTodo = (params: PutTodo) => {
 
   try {
     baseApi
-    .put(`todos/${id}`, updatedParams)
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.error(err);
-      throw err; // エラーを再スローして呼び出し元で処理できるようにする
-    });
+      .put(`todos/${id}`, updatedParams)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.error(err);
+        throw err; // エラーを再スローして呼び出し元で処理できるようにする
+      });
   } catch (error) {
-    console.log(error)
-    return Promise.reject(error)
+    console.log(error);
+    return Promise.reject(error);
+  }
+};
+
+export const deleteTodo = async (id: number) => {
+  try {
+    const res = await baseApi.delete(`todos/${id}`);
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
