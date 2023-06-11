@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import st from '../../../styles/sass/style.module.scss';
-import { postTodo } from '../../api/index';
+import { postTodo } from '../../api/todoApi';
 
 type TodoParams = {
   title: string;

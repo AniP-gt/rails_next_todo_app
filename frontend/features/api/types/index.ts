@@ -1,3 +1,8 @@
+export type GetTodos = {
+  title: string;
+  status: boolean;
+};
+
 export type GetTodo = {
   id: number;
   title: string;
