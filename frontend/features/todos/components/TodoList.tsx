@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import st from '../../../styles/sass/style.module.scss';
-import { getListTodos } from '../../api/index';
+import { getListTodos } from '../../api/todoApi';
 
 type Todo = {
   title: string;

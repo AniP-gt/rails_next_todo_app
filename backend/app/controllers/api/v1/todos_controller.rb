@@ -20,7 +20,7 @@ class Api::V1::TodosController < ApplicationController
 
   def update
     todo = Todo.find(params[:id])
-    if todo.update(todo_params)
+    if todo.update(update_params)
       render json: todo
     else
       render json: todo.errors, status: 422
@@ -54,8 +54,7 @@ class Api::V1::TodosController < ApplicationController
   end
 
   def update_params
-    params.require(:params)
-          .permit(:id,
+    params.permit(:id,
                   :title,
                   :content,
                   :priority,
