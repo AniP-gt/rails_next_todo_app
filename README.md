@@ -27,3 +27,8 @@ git init #ルートディレクトリ
 
 - docker-compose build
 - docker-compose up
+
+## 簡単なCRUD処理ができる
+- pagesから全体のページ（url）の管理
+- features/todoで各機能やコンポーネントを格納
+- apiでrailsからデータを受け取る
