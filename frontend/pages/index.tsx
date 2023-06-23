@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={st.main}>
-        <h1 className={st.list_top}>ToDo App</h1>
+        <h1 className="text-3xl font-bold underline">ToDo App</h1>
         <div className={st.main_top}>
           <h2 className={st.search_top}>Search ToDo</h2>
           <Link className={st.create_top} href={'/todos/form'}>Create ToDo</Link>
